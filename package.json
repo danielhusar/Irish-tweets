@@ -1,0 +1,38 @@
+{
+  "name": "irish-tweets",
+  "subdomain": "efrafa-irish-tweets",
+  "domains": [],
+  "description": "All Irish tweets in google map.",
+  "keywords": [
+    "express",
+    "nodejitsu",
+    "deployment"
+  ],
+  "version": "0.1.0",
+  "author": "Daniel Husar <dano.husar@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielhusar/portfolio.git"
+  },
+  "preferGlobal": true,
+  "private": false,
+  "bin": {
+    "jitsu": "./bin/jitsu"
+  },
+  "main": "./lib/jitsu",
+  "scripts": {
+    "start": "app.js"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "ejs" : "*",
+    "less-middleware": "*",
+    "simple-twitter" : "*"
+  },
+  "devDependencies": {
+    "supervisor" : "*"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+}
