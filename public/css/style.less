@@ -33,13 +33,55 @@ a{
 }
 .tweet section a{
 	color: black;
+	text-decoration: none;
+	color: #555;
+}
+.tweet section a:hover{
+	color: black;
 }
 .tweet section .name{
 	font-weight: bold;
+	color: black;
 }
 .tweet section .message{
-	color: #222;
+	color: #111;
 	display: block;
 	text-decoration: none;
 	padding-top: 3px;
+}
+#search{
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 50%;
+	margin-left: -150px;
+	width: 300px;
+	height: 30px;
+	background: white;
+	z-index: 10;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #ddd;
+	border-top: none;
+}
+#search input{
+	background: none;
+	border: none;
+	outline: none;
+}
+#search .input{
+	width: 210px;
+	margin: 2px 5px;
+	height: 25px;
+}
+#search .button{
+	color: black;
+	background-image: linear-gradient(bottom, rgb(199,174,68) 10%, rgb(239,209,96) 55%);
+	background-image: -o-linear-gradient(bottom, rgb(199,174,68) 10%, rgb(239,209,96) 55%);
+	background-image: -moz-linear-gradient(bottom, rgb(199,174,68) 10%, rgb(239,209,96) 55%);
+	background-image: -webkit-linear-gradient(bottom, rgb(199,174,68) 10%, rgb(239,209,96) 55%);
+	background-image: -ms-linear-gradient(bottom, rgb(199,174,68) 10%, rgb(239,209,96) 55%);
+	border-radius: 3px;
+	padding: 5px 10px;
+	float: right;
+	margin: 2px 2px 0 0;
 }

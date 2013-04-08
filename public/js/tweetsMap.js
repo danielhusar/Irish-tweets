@@ -45,14 +45,21 @@
 	      icon : '/img/twitter.png',
 	    });
 
+	    var urlMatch = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+	    var userMatch = /(^|\s)@(\S+)/g;
+	    var hashMatch = /(^|\s)#(\S+)/g;
+    	var msg = tweet.text.replace(urlMatch,'<a href="$1" target="_blank">$1</a>')
+    											.replace(userMatch,'$1<a href="http://www.twitter.com/$2" target="_blank">@$2</a>')
+    											.replace(hashMatch, '$1<a href="https://twitter.com/search?q=%23$2" target="_blank">#$2</a>');
+
 	    var contentString = '\
 		    <div class="tweet">\
-		    	<a href="http://www.twitter.com/'+tweet.user.screen_name+'">\
+		    	<a href="http://www.twitter.com/'+tweet.user.screen_name+'" target="_blank">\
 		    		<img src="'+tweet.user.profile_image_url+'" alt="">\
 		    	</a>\
 		    	<section>\
-		    	  <a href="http://www.twitter.com/'+tweet.user.screen_name+'" class="name">@'+tweet.user.screen_name+'</a>\
-		    	  <div class="message">'+ tweet.text +'</div>\
+		    	  <a href="http://www.twitter.com/'+tweet.user.screen_name+'" class="name" target="_blank">@'+tweet.user.screen_name+'</a>\
+		    	  <div class="message">'+ msg +'</div>\
 		    	</section>\
 		    </div>';
 
@@ -95,8 +102,7 @@
 				that.showTweets(statuses);
 
 				if(tweets.length < count){
-					var max_id = data.statuses[data.statuses.length - 1].id - 1;
-					getTweets(pagin, max_id);
+					getTweets(pagin, data.statuses[data.statuses.length - 1].id - 1);
 				} else {
 					deferred.resolve(tweets);
 				}
@@ -138,6 +144,22 @@
 	tweetsMap.prototype.getPosition = function(lat, lng){
 		return new google.maps.LatLng(lat, lng);
 	};
+
+
+	/**
+	 * Center the map for searched term
+	 * @param  {string} address
+	 * @return {void}
+	 */
+	tweetsMap.prototype.search = function(address){
+	  var that = this;
+	  var geocoder = new google.maps.Geocoder();
+	  geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      that.map.fitBounds(results[0].geometry.viewport);
+	    }
+	  });
+	}
 
 
 

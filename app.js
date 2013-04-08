@@ -26,9 +26,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-
 app.get('/json/tweets/:count/:max_id', routes.tweets);
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

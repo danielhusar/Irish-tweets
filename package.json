@@ -8,11 +8,11 @@
     "nodejitsu",
     "deployment"
   ],
-  "version": "0.1.0",
+  "version": "0.1.0-1",
   "author": "Daniel Husar <dano.husar@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielhusar/portfolio.git"
+    "url": "https://github.com/danielhusar/Irish-tweets"
   },
   "preferGlobal": true,
   "private": false,
@@ -25,12 +25,12 @@
   },
   "dependencies": {
     "express": "3.0.6",
-    "ejs" : "*",
+    "ejs": "*",
     "less-middleware": "*",
-    "simple-twitter" : "*"
+    "simple-twitter": "*"
   },
   "devDependencies": {
-    "supervisor" : "*"
+    "supervisor": "*"
   },
   "engines": {
     "node": ">= 0.8.0"
