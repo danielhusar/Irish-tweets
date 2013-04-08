@@ -8,8 +8,8 @@
 
 	//search functionality
 	$('#search').submit(function() {
-  	tweets.search($(this).find('.input').val());
-  	return false;
+		tweets.search($(this).find('.input').val());
+		return false;
 	});
 
 
