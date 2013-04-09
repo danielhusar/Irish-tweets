@@ -1,20 +1,20 @@
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, unused:true, curly:true, browser:true, indent:4, maxerr:50, multistr: true */
 (function (window, document, $, google, undefined) {
 	'use strict';
 
-	var tweetsMap = window.tweetsMap = function( container ){
+	var TweetsMap = window.TweetsMap = function( container ){
 		this.map = {};
 		this.geocoder = {};
 		this.infowindow = new google.maps.InfoWindow(); //only one infowindow at time
 		this.container = container;
-	}
+	};
 
 	/**
 	 * Show the main google map
 	 * @return this
 	 * @chainable
 	 */
-	tweetsMap.prototype.showMap = function(){
-		var that = this;
+	TweetsMap.prototype.showMap = function(){
 		var myOptions = {
 				zoom: 7,
 				center: new google.maps.LatLng(53.187933,-7.998047),
@@ -22,8 +22,8 @@
 				zoomControl: true,
 				panControl: true,
 				streetViewControl: false,
-				mapTypeControl: false,
-			}
+				mapTypeControl: false
+			};
 		this.map = new google.maps.Map(document.getElementById(this.container), myOptions);
 		return this;
 	};
@@ -32,7 +32,7 @@
 	 * Add tweet to the map
 	 * @param {object} tweet object from the tweeter
 	 */
-	tweetsMap.prototype.addTweet = function(tweet){
+	TweetsMap.prototype.addTweet = function(tweet){
 
 		if(tweet.geo){ //show only tweets that have some geo information
 			var that = this;
@@ -42,7 +42,7 @@
 				animation: google.maps.Animation.DROP,
 				position: that.getPosition(tweet.geo.coordinates[0], tweet.geo.coordinates[1]),
 				title : tweet.place.full_name,
-				icon : '/img/twitter.png',
+				icon : '/img/twitter.png'
 			});
 
 			var urlMatch = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
@@ -78,7 +78,7 @@
 	 * @param  {number} count of the tweets to show
 	 * @return {object} deferred function
 	 */
-	tweetsMap.prototype.getTweets = function(count, max_id){
+	TweetsMap.prototype.getTweets = function(count, max_id){
 		
 		max_id = max_id ? max_id : 'null';
 
@@ -108,14 +108,14 @@
 					deferred.resolve(tweets);
 				}
 
-			}).fail(function(err){
+			}).fail(function(){
 				getTweets(pagin, max_id); //on error try last call again
 			});
 		})(pagin, max_id);
 
 		return deferred.promise();
 
-	}
+	};
 
 
 	/**
@@ -124,7 +124,7 @@
 	 * @param  {number} max_id max id of the first tweet
 	 * @return {object} ajax promise call
 	 */
-	tweetsMap.prototype.showTweets = function(tweets){
+	TweetsMap.prototype.showTweets = function(tweets){
 		var length = tweets.length;
 		var that = this;
 
@@ -132,7 +132,7 @@
 			var tweet = tweets[length];
 			that.addTweet(tweet);
 		}
-	}
+	};
 
 	/**
 	 * Get the position of the latitude and longtitude
@@ -140,7 +140,7 @@
 	 * @param  {number} lng longtitude
 	 * @return {object} google object with the position
 	 */
-	tweetsMap.prototype.getPosition = function(lat, lng){
+	TweetsMap.prototype.getPosition = function(lat, lng){
 		return new google.maps.LatLng(lat, lng);
 	};
 
@@ -150,15 +150,15 @@
 	 * @param  {string} address
 	 * @return {void}
 	 */
-	tweetsMap.prototype.search = function(address){
+	TweetsMap.prototype.search = function(address){
 		var that = this;
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode( { 'address': address}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
+			if (status === google.maps.GeocoderStatus.OK) {
 				that.map.fitBounds(results[0].geometry.viewport);
 			}
 		});
-	}
+	};
 
 
 

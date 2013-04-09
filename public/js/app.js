@@ -1,17 +1,17 @@
-(function (window, document, $, undefined) {
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, unused:true, curly:true, browser:true, indent:4, maxerr:50, multistr: true */
+(function (window, document, $, TweetsMap, undefined) {
 	'use strict';
 
-	var tweets = new tweetsMap("map");
-	tweets.showMap().getTweets(1000).done(function(tweets){
-		//console.log('all tweets loaded');
+	var Tweets = new TweetsMap("map");
+	Tweets.showMap().getTweets(1000).done(function(tweets){
+		//console.log('all tweets loaded:', tweets.length);
 	});
 
 	//search functionality
 	$('#search').submit(function() {
-		tweets.search($(this).find('.input').val());
+		Tweets.search($(this).find('.input').val());
 		return false;
 	});
 
-
-})(this.window, this.document, this.jQuery);
+})(this.window, this.document, this.jQuery, this.TweetsMap);
 
