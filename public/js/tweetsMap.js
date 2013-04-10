@@ -96,6 +96,11 @@
 
 				if(data.statuses){
 					
+					if(max_id !== 'null'){
+						data.statuses.reverse().pop();
+						data.statuses.reverse();
+					}
+
 					var statuses = data.statuses;
 					var offset = count - (tweets.length + statuses.length) + 1;
 					pagin = (offset >= pagin) ? pagin : offset;
