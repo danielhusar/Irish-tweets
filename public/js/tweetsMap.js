@@ -96,8 +96,11 @@
 
 				if(data.statuses){
 					var statuses = data.statuses;
-					var offset = count - (tweets.length + statuses.length);
-					pagin = (offset > pagin) ? pagin : offset;
+					if(max_id !== 'null'){
+						statuses.reverse().pop();
+					}
+					var offset = count - (tweets.length + statuses.length) + 1;
+					pagin = (offset >= pagin) ? pagin : offset;
 
 					tweets.push.apply(tweets, statuses);
 					that.showTweets(statuses);
