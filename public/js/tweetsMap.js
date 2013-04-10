@@ -103,7 +103,7 @@
 					that.showTweets(statuses);
 
 					if(tweets.length < count){
-						max_id = data.statuses[data.statuses.length - 1].id - 1;
+						max_id = data.statuses[data.statuses.length - 1].id_str;
 						getTweets(pagin, max_id);
 					} else {
 						deferred.resolve(tweets);
