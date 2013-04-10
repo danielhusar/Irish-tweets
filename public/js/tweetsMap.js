@@ -94,18 +94,20 @@
 				cache    : false
 			}).done(function(data){
 
-				var statuses = data.statuses;
-				var offset = count - (tweets.length + statuses.length);
-				pagin = (offset > pagin) ? pagin : offset;
+				if(data.statuses){
+					var statuses = data.statuses;
+					var offset = count - (tweets.length + statuses.length);
+					pagin = (offset > pagin) ? pagin : offset;
 
-				tweets.push.apply(tweets, statuses);
-				that.showTweets(statuses);
+					tweets.push.apply(tweets, statuses);
+					that.showTweets(statuses);
 
-				if(tweets.length < count){
-					max_id = data.statuses[data.statuses.length - 1].id - 1;
-					getTweets(pagin, max_id);
-				} else {
-					deferred.resolve(tweets);
+					if(tweets.length < count){
+						max_id = data.statuses[data.statuses.length - 1].id - 1;
+						getTweets(pagin, max_id);
+					} else {
+						deferred.resolve(tweets);
+					}
 				}
 
 			}).fail(function(){
