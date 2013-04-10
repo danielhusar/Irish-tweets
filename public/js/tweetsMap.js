@@ -95,6 +95,7 @@
 			}).done(function(data){
 
 				if(data.statuses){
+					
 					var statuses = data.statuses;
 					if(max_id !== 'null'){
 						statuses.reverse().pop();
