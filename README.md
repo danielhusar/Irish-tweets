@@ -12,7 +12,7 @@ Known Issues
 
 Demo
 ============
-[http://irish-tweets.eu01.aws.af.cm/](http://irish-tweets.eu01.aws.af.cm/)
+[http://danielhusar.sk:3002](http://danielhusar.sk:3002)
 
 ScreenShot
 ============

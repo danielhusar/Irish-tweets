@@ -10,15 +10,12 @@ var express = require('express'),
 
 //configurations
 app.configure(function(){
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', 3002);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
 	app.use(express.logger('dev'));
 	app.use(app.router);
-	app.use(require('less-middleware')({ 
-		src: __dirname + '/public',
-		force : true
-	}));
+	app.use(require('less-middleware')(__dirname + '/public'));
 	app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -33,4 +30,4 @@ app.get('/json/tweets/:count/:max_id', routes.tweets);
 //create server
 http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening on port " + app.get('port'));
-})
+});

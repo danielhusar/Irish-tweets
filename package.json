@@ -25,12 +25,12 @@
   },
   "dependencies": {
     "express": "3.0.6",
-    "ejs": "*",
-    "less-middleware": "*",
-    "simple-twitter": "*"
+    "ejs": "^1.0.0",
+    "less-middleware": "^1.0.3",
+    "simple-twitter": "^1.0.3"
   },
   "devDependencies": {
-    "supervisor": "*"
+    "supervisor": "^0.6.0"
   },
   "engines": {
     "node": ">= 0.8.0"
